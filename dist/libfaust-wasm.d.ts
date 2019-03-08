@@ -29,7 +29,7 @@ declare module "libfaust-wasm" {
         Runtime: any;
 
         ccall(ident: string, returnType: string | null, argTypes: string[], args: any[]): any;
-        cwrap(ident: string, returnType: string | null, argTypes: string[]): () => any;
+        cwrap(ident: string, returnType: string | null, argTypes: string[]): (...args: any[]) => any;
 
         setValue(ptr: number, value: any, type: string, noSafe?: boolean): void;
         getValue(ptr: number, type: string, noSafe?: boolean): number;
