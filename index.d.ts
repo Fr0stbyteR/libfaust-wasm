@@ -104,6 +104,6 @@ declare module "libfaust-wasm" {
     }
     function FaustModule(FaustModule: LibFaust | { [key: string]: any }, ...args: any[]): LibFaust;
     class LibFaustLoader {
-        static load(url: string): Promise<LibFaust>;
+        static load(url?: string): Promise<LibFaust>;
     }
 }
