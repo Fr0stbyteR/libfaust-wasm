@@ -11,10 +11,9 @@
   ],
   "author": "Grame",
   "license": "GPL-2.0-or-later",
-  "devDependencies": {
-    "@types/emscripten": "0.0.31"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "@types/emscripten": "0.0.31",
     "ws": "^6.2.0"
   }
 }
