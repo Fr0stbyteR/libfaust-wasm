@@ -2,9 +2,9 @@
   "name": "libfaust-wasm",
   "version": "1.0.0",
   "description": "Load Faust with Emscripten generated module.",
-  "main": "./dist/libfaust-wasm.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node libfaust-wasm-min.js"
+    "test": "node index.js"
   },
   "keywords": [
     "faust"
@@ -13,5 +13,8 @@
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@types/emscripten": "0.0.31"
+  },
+  "dependencies": {
+    "ws": "^6.2.0"
   }
 }

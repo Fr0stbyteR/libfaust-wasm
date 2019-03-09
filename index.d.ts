@@ -91,7 +91,7 @@ declare module "libfaust-wasm" {
         _malloc(size: number): number;
         _free(ptr: number): void;
     }
-    export class FaustModule extends EmscriptenModule {
+    class LibFaust extends EmscriptenModule {
         UTF8ToString(ptr: number, maxBytesToRead?: number): string;
         UTF8ArrayToString(u8Array: number[], ptr: number, maxBytesToRead?: number): string;
         stringToUTF8Array(str: string, outU8Array: number[], outIdx: number, maxBytesToWrite: number): number;
@@ -99,4 +99,5 @@ declare module "libfaust-wasm" {
         allocateUTF8(str: string): number;
         lengthBytesUTF8?: (str: string) => number;
     }
+    function FaustModule(FaustModule: any, ...args: any[]): any
 }
