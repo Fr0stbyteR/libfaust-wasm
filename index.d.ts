@@ -98,6 +98,12 @@ declare module "libfaust-wasm" {
         stringToUTF8(str: string, outPtr: number, maxBytesToWrite: number): number;
         allocateUTF8(str: string): number;
         lengthBytesUTF8?: (str: string) => number;
+
+        // Undocumented Promise-like, has issue in https://github.com/emscripten-core/emscripten/issues/5820
+        then(func: (module: any) => any): LibFaust | any;
     }
-    function FaustModule(FaustModule: any, ...args: any[]): any
+    function FaustModule(FaustModule: LibFaust, ...args: any[]): LibFaust;
+    class LibFaustLoader {
+        static load(url: string): Promise<LibFaust>;
+    }
 }
