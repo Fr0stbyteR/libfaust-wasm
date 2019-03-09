@@ -102,7 +102,7 @@ declare module "libfaust-wasm" {
         // Undocumented Promise-like, has issue in https://github.com/emscripten-core/emscripten/issues/5820
         then(func: (module: any) => any): LibFaust | any;
     }
-    function FaustModule(FaustModule: LibFaust, ...args: any[]): LibFaust;
+    function FaustModule(FaustModule: LibFaust | { [key: string]: any }, ...args: any[]): LibFaust;
     class LibFaustLoader {
         static load(url: string): Promise<LibFaust>;
     }
