@@ -1,4 +1,4 @@
-const FaustModule = require("./src/libfaust-wasm-min.js");
+const FaustModule = require("./src/libfaust-wasm.min.js");
 class LibFaustLoader {
     static load(url) { // Don't convert to async
         return fetch(url || "https://faust.grame.fr/tools/editor/scripts/libfaust-wasm.wasm")
