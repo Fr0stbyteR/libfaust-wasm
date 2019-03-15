@@ -6,9 +6,21 @@ class LibFaustLoader {
         .then((buffer) => {
             const libFaust = FaustModule({ wasmBinary: buffer });
             libFaust.then = (f) => { // Workaround of issue https://github.com/emscripten-core/emscripten/issues/5820
-                f(libFaust);
-                delete libFaust.then;
-                return Promise.resolve(libFaust);
+                delete libFaust["then"];
+                // We may already be ready to run code at this time. if
+                // so, just queue a call to the callback.
+                if (libFaust["calledRun"]) {
+                    f(libFaust);
+                } else {
+                    // we are not ready to call then() yet. we must call it
+                    // at the same time we would call onRuntimeInitialized.
+                    const _onRuntimeInitialized = libFaust["onRuntimeInitialized"];
+                    libFaust["onRuntimeInitialized"] = () => {
+                        if (_onRuntimeInitialized) _onRuntimeInitialized();
+                        f(libFaust);
+                    };
+                }
+                return libFaust;
             };
             libFaust.lengthBytesUTF8 = (str) => {
                 let len = 0;
